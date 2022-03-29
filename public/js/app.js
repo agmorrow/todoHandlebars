@@ -1,23 +1,21 @@
-const $email = document.querySelector('#email');
-const $password = document.querySelector('#password');
-const $login = document.querySelector('#login');
+$(document).ready(function() {
+  const emailField = $('#emailField');
+  const passwordField = $('#passwordField');
+  const signinBtn = $('#signinBtn');
+  const logoutBtn = $('#logout');
 
-$login.addEventListener('click', async function (event) {
+signinBtn.on('click', async function(event) {
   event.preventDefault();
-  console.log($password.value);
-  try{
-  const response = await fetch('/api/users/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      email: $email.value,
-      password: $password.value,
-    })
+  await $.post('/api/users/login', {
+    email: emailField.val().trim(),
+    password: passwordField.val().trim(),
   });
+  window.location.href = '/todos';
+});
 
-  const data = await response.json();
-  window.location.reload();
-} catch (e) {
-  console.log(e);
-}
+logoutBtn.on('click', async function() {
+  await $.post('/api/users/logout');
+  window.location.href = '/';
+})
+
 });
