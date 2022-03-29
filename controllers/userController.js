@@ -93,6 +93,19 @@ login: async (req, res) => {
     console.log(e);
     res.json(e);
   }
-}
+},
+loginView: (req, res) => {
+    if (req.session.loggedIn) {
+      return res.redirect('/todos');
+    }
 
+    res.render('login');
+  },
+  
+  signupView: (req, res) => {
+    if (req.session.loggedIn) {
+      return res.redirect('/todos');
+    }
+    res.render('signUp');
+  }
 }
