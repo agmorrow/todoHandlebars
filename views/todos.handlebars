@@ -2,24 +2,16 @@
 <form>
   <div class="mb-3">
     <label for="todoField" class="form-label">Please Enter a todo</label>
-    <input type="email" class="form-control" id="todoField" aria-describedby="emailHelp">
+    <input type="text" class="form-control" id="todoField" aria-describedby="emailHelp">
   </div>
-
-
   <button type="submit" class="btn btn-primary" id="addTodoBtn">Submit</button>
 </form>
-
 <ul class="list-group">
   {{#each userTodos as |todo| }}
-  {{#if todo.completed}}
-  <li class="list-group-item list-group-item-primary">{{todo.task}}</li>
-  {{else}}
-  <li class="list-group-item list-group-item-danger">{{todo.task}}</li>
-  {{/if}}
+    {{#if todo.completed}}
+      <li class="list-group-item list-group-item-primary">{{todo.task}}</li>
+    {{else}}
+      <li class="list-group-item list-group-item-danger">{{todo.task}}</li>
+    {{/if}}
   {{/each}}
-  {{!-- <li class="list-group-item">An item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li> --}}
 </ul>
